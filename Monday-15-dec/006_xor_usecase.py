@@ -5,3 +5,4 @@ def differ_by_one_bit(a, b):
 # Example usage
 print(differ_by_one_bit(10, 8))   
 print(differ_by_one_bit(10, 15))  
+print(differ_by_one_bit(1, 2))
