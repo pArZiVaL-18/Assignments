@@ -11,3 +11,10 @@ def min_rotations(s):
 print(min_rotations("bca"))  
 print(min_rotations("abc"))  
 print(min_rotations("abab"))  
+print(min_rotations(""))
+
+# s=input("Enter string   ")
+# tempStr=s*2
+
+
+# print(tempStr.find(s,1))
