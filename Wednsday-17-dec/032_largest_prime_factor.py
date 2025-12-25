@@ -1,20 +1,21 @@
-def largest_prime_factor(n):
-    largest = -1
+def my_largest_prime_factor(n):
+    ans = -1
 
     while n % 2 == 0:
-        largest = 2
+        ans = 2
         n //= 2
 
     factor = 3
     while factor * factor <= n:
         while n % factor == 0:
-            largest = factor
+            ans = factor
             n //= factor
+
         factor += 2
 
     if n > 1:
-        largest = n
+        ans = n
 
-    return largest
+    return ans
 
-print(largest_prime_factor(68))
+print(my_largest_prime_factor(48))
