@@ -13,6 +13,21 @@ def set_all_odd_bits(n):
     print(n | mask)
     return bin(n | mask)
 
+def set_all_oddbits(n):
+    temp = n
+    mask = 0
+    count = 0
+
+    while temp != 0:
+        if count % 2 != 0:
+            mask |= (1 << count)
+        count += 1
+        temp >>= 1
+    
+    print(bin(mask))
+    return mask | n
+
 
 print(set_all_odd_bits_loop(13))
-print(set_all_odd_bits(13))
+# print(set_all_odd_bits(13))
+print(set_all_oddbits(13))
