@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tasks</title>
+    </head>
+    <body>
+        <h1>Task List</h1>
+
+        <ul>
+            <% tasks.forEach(task => { %>
+            <li><strong><%= task.title %></strong> - <%= task.status %></li>
+            <% }) %>
+        </ul>
+    </body>
+</html>

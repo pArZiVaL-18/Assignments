@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Change Image Example</title>
+        <style>
+            img {
+                width: 300px;
+                display: block;
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <img id="myImage" src="./image1.jpg" alt="Sample Image" />
+
+        <button id="changeBtn">Change Image</button>
+
+        <script>
+            const image = document.getElementById("myImage");
+            const button = document.getElementById("changeBtn");
+
+            button.addEventListener("click", () => {
+                image.src = "./image2.jpg";
+                button.textContent = "Image Changed";
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Change Text Color</title>
+    </head>
+    <body>
+        <p id="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
+            unde ipsa quibusdam fuga architecto dicta saepe vel. Quis quasi
+            eaque consequatur. Quidem nam accusamus cumque esse nemo placeat
+            nihil similique.
+        </p>
+
+        <button onclick="changeToBlue()">Blue</button>
+        <button onclick="changeToRed()">Red</button>
+
+        <script>
+            const paragraph = document.getElementById("text");
+
+            function changeToBlue() {
+                paragraph.style.color = "blue";
+            }
+
+            function changeToRed() {
+                paragraph.style.color = "red";
+            }
+        </script>
+    </body>
+</html>

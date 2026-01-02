@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Assignment 5</title>
+    </head>
+    <body>
+        <button id="addItem">Add item</button>
+        <div id="itemList"></div>
+    </body>
+    <script>
+        const btn = document.getElementById("addItem");
+        const list = document.getElementById("itemList");
+
+        btn.addEventListener("click", () => {
+            const itemCount = list.children.length + 1;
+            const li = document.createElement("li");
+            li.textContent = `Item ${itemCount}`;
+            list.appendChild(li);
+        });
+    </script>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Form Validation</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                padding: 20px;
+            }
+            .error {
+                color: red;
+                font-size: 0.9em;
+            }
+            .field {
+                margin-bottom: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <form id="userForm" novalidate>
+                <div class="field">
+                    Name:
+                    <input type="text" id="name" />
+                    <div class="error" id="nameError"></div>
+                </div>
+
+                <div class="field">
+                    Email:
+                    <input type="email" id="email" />
+                    <div class="error" id="emailError"></div>
+                </div>
+
+                <div class="field">
+                    Age:
+                    <input type="number" id="age" />
+                    <div class="error" id="ageError"></div>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </center>
+        <script>
+            const form = document.getElementById("userForm");
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                document.getElementById("nameError").textContent = "";
+                document.getElementById("emailError").textContent = "";
+                document.getElementById("ageError").textContent = "";
+
+                let isValid = true;
+
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const age = document.getElementById("age").value.trim();
+
+                // For Name
+                if (name === "") {
+                    document.getElementById("nameError").textContent =
+                        "Name is required.";
+                    isValid = false;
+                }
+
+                // For Email
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email === "") {
+                    document.getElementById("emailError").textContent =
+                        "Email is required.";
+                    isValid = false;
+                } else if (!emailPattern.test(email)) {
+                    document.getElementById("emailError").textContent =
+                        "Please enter a valid email address.";
+                    isValid = false;
+                }
+
+                // for Age
+                if (age !== "" && Number(age) <= 18) {
+                    document.getElementById("ageError").textContent =
+                        "Age must be greater than 18.";
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    alert("Form submitted successfully!");
+                    form.reset();
+                }
+            });
+        </script>
+    </body>
+</html>
