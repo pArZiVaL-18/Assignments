@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.site-header {
+    background-color: #222;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.projects {
+    display: flex;
+    gap: 20px;
+}
+
+.project-card {
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #ccc;
+    flex: 1;
+}
+
+.contact-form {
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #aaa;
+}
+
+.contact-form button {
+    padding: 10px;
+    border: none;
+    background-color: #222;
+    color: white;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #444;
+}
+
+.site-footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #222;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .projects {
+        flex-direction: column;
+    }
+
+    .site-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
