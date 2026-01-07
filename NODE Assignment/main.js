@@ -1,16 +1,19 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
+const ejsMate = require("ejs-mate");
+const multer = require("multer");
 
 const app = express();
 const PORT = 8080;
 
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.set("view engine", "ejs");
+// Middlewares
+app.use(express.json()); // used to parse json data (content type : application/json)
+app.use(express.urlencoded({ extended: true })); // used to parse form data (content type: application/x-www-form-urlencoded)
+app.set("view engine", "ejs"); // it tells express that we are using embedded javascript for templeting
+app.engine("ejs", ejsMate);
 
-// Helper functions
+// Helper functions : to read and write data in json files
 const dataPath = path.join(__dirname, "/data/tasks.json");
 
 function readData() {
@@ -24,56 +27,120 @@ function writeData(data) {
 
 // Routes
 
-// GET all tasks (API)
-app.get("/tasks", (req, res) => {
-    const data = readData();
-    res.json(data.tasks);
+// multer storage set up
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => cb(null, "uploads/"),
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    },
+});
+const upload = multer({ storage });
+
+// Handling file upload
+app.post("/upload", upload.single("file"), (req, res) => {
+    res.json({
+        message: "File uploaded successfully!",
+        filename: req.file.filename,
+    });
 });
 
-// GET single task (API)
+app.get("/time", (req, res) => {
+    const now = new Date();
+
+    res.json({
+        timestamp: now.getTime(),
+        iso: now.toISOString(),
+        time: now.toLocaleTimeString(),
+        date: now.toLocaleDateString(),
+    });
+});
+
+app.get("/", (req, res) => {
+    res.send("Server is started!");
+});
+// Index route
+app.get("/tasks", (req, res) => {
+    const data = readData();
+    res.render("index", { tasks: data.tasks });
+});
+
+// Routes for creatig new task
+app.get("/tasks/new", (req, res) => {
+    // Render form for creating new task
+    res.render("newTask");
+});
+
+app.post("/tasks/create", (req, res) => {
+    // reads data from form and create new object and writes it back in json data file
+    const data = readData();
+
+    const newTask = {
+        id: data.tasks.length + 1,
+        title: req.body.title,
+        description: req.body.description,
+        status: req.body.status,
+        priority: req.body.priority,
+    };
+
+    data.tasks.push(newTask);
+    writeData(data);
+
+    res.redirect("/tasks");
+});
+
+// update/change a particular task
+app.get("/tasks/:id/edit", (req, res) => {
+    // matches the id of the record which we want to update and renders data of that record in form to update
+    const data = readData();
+    const task = data.tasks.find((t) => t.id === Number(req.params.id));
+
+    if (!task) {
+        return res.status(404).send("Task not found");
+    }
+
+    res.render("editTask", { task });
+});
+
+app.post("/tasks/:id/update", (req, res) => {
+    // reads data from form and updates it in json file and redirect to home page
+    const data = readData();
+    const task = data.tasks.find((t) => t.id === Number(req.params.id));
+
+    if (!task) {
+        return res.status(404).send("Task not found");
+    }
+
+    task.title = req.body.title;
+    task.description = req.body.description;
+    task.status = req.body.status;
+    task.priority = req.body.priority;
+
+    writeData(data);
+    res.redirect("/tasks");
+});
+
+// GET single task
 app.get("/tasks/:id", (req, res) => {
+    // views a particular task
     const data = readData();
     const task = data.tasks.find((t) => t.id === Number(req.params.id));
 
     if (!task) {
         return res.status(404).json({ message: "Task not found" });
     }
-    res.json(task);
-});
-
-// Render tasks (EJS)
-app.get("/tasks-view", (req, res) => {
-    const data = readData();
-    res.render("index", { tasks: data.tasks });
-});
-
-// POST create task
-app.post("/tasks", (req, res) => {
-    const data = readData();
-
-    const newTask = {
-        id: Date.now(),
-        title: req.body.title,
-        description: req.body.description,
-        status: "PENDING",
-        priority: "MEDIUM",
-    };
-
-    data.tasks.push(newTask);
-    writeData(data);
-
-    res.status(201).json(newTask);
+    res.render("viewTask", { task });
+    // res.json(task);
 });
 
 // DELETE task
-app.delete("/tasks/:id", (req, res) => {
+app.post("/tasks/:id/delete", (req, res) => {
     const data = readData();
     data.tasks = data.tasks.filter((t) => t.id !== Number(req.params.id));
     writeData(data);
 
-    res.status(204).send();
+    res.status(204).redirect("/tasks");
 });
 
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on https://localhost:${PORT}`);
 });

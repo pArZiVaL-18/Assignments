@@ -1,49 +1,39 @@
 {
-    "tasks": [
-        {
-            "id": 1,
-            "title": "Finish REST API practice",
-            "description": "Implement CRUD operations for the Task model",
-            "status": "PENDING",
-            "priority": "HIGH",
-            "dueDate": "2026-01-05",
-            "createdAt": "2026-01-01T09:00:00Z"
-        },
-        {
-            "id": 2,
-            "title": "Study HTTP methods",
-            "description": "Understand GET, POST, PUT, PATCH, DELETE",
-            "status": "IN_PROGRESS",
-            "priority": "MEDIUM",
-            "dueDate": "2026-01-07",
-            "createdAt": "2026-01-02T11:15:00Z"
-        },
-        {
-            "id": 3,
-            "title": "Write API documentation",
-            "description": "Add endpoint descriptions and examples",
-            "status": "PENDING",
-            "priority": "LOW",
-            "dueDate": "2026-01-12",
-            "createdAt": "2026-01-02T14:30:00Z"
-        },
-        {
-            "id": 4,
-            "title": "Test API endpoints",
-            "description": "Use Postman or curl to test responses",
-            "status": "COMPLETED",
-            "priority": "MEDIUM",
-            "dueDate": "2026-01-03",
-            "createdAt": "2026-01-01T16:45:00Z"
-        },
-        {
-            "id": 5,
-            "title": "Refactor task service",
-            "description": "Improve code structure and error handling",
-            "status": "IN_PROGRESS",
-            "priority": "HIGH",
-            "dueDate": "2026-01-15",
-            "createdAt": "2026-01-03T08:20:00Z"
-        }
-    ]
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Finish REST API practice",
+      "description": "Implement CRUD operations for the Task model.",
+      "status": "PENDING",
+      "priority": "HIGH"
+    },
+    {
+      "id": 2,
+      "title": "Study HTTP methods",
+      "description": "Understand GET, POST, PUT, PATCH, DELETE",
+      "status": "IN_PROGRESS",
+      "priority": "MEDIUM"
+    },
+    {
+      "id": 3,
+      "title": "Write API documentation",
+      "description": "Add endpoint descriptions and examples",
+      "status": "PENDING",
+      "priority": "LOW"
+    },
+    {
+      "id": 4,
+      "title": "Test API endpoints",
+      "description": "Use Postman or curl to test responses",
+      "status": "COMPLETED",
+      "priority": "MEDIUM"
+    },
+    {
+      "id": 5,
+      "title": "Refactor task service",
+      "description": "Improve code structure and error handling",
+      "status": "IN_PROGRESS",
+      "priority": "HIGH"
+    }
+  ]
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Server Clock</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                margin-top: 100px;
+            }
+            #time {
+                font-size: 48px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Server Time</h1>
+        <div id="time">Loading...</div>
+
+        <script>
+            async function fetchServerTime() {
+                try {
+                    const res = await fetch("/time");
+                    const data = await res.json();
+                    document.getElementById("time").innerText = data.time;
+                } catch (err) {
+                    document.getElementById("time").innerText = "Error";
+                }
+            }
+
+            fetchServerTime();
+            setInterval(fetchServerTime, 1000);
+        </script>
+    </body>
+</html>
