@@ -1,0 +1,39 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Finish REST API practice today",
+      "description": "Implement CRUD operations for the Task model.",
+      "status": "PENDING",
+      "priority": "HIGH"
+    },
+    {
+      "id": 2,
+      "title": "Study HTTP methods",
+      "description": "Understand GET, POST, PUT, PATCH, DELETE",
+      "status": "done",
+      "priority": "medium"
+    },
+    {
+      "id": 3,
+      "title": "Write API documentation",
+      "description": "Add endpoint descriptions and examples",
+      "status": "PENDING",
+      "priority": "LOW"
+    },
+    {
+      "id": 4,
+      "title": "Test API endpoints",
+      "description": "Use Postman or curl to test responses",
+      "status": "COMPLETED",
+      "priority": "MEDIUM"
+    },
+    {
+      "id": 5,
+      "title": "Refactor task service",
+      "description": "Improve code structure and error handling",
+      "status": "IN_PROGRESS",
+      "priority": "HIGH"
+    }
+  ]
+}

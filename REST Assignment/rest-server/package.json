@@ -1,0 +1,20 @@
+{
+  "name": "rest-server",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.6.0",
+    "multer": "^2.0.2",
+    "ws": "^8.19.0"
+  }
+}
