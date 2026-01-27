@@ -13,7 +13,7 @@ export async function getTaskById(id) {
     if (!res.ok) throw new Error("Task not found");
     return res.json();
 }
-
+ 
 // create a new task
 export async function createTask(task) {
     const res = await fetch(`${BASE_URL}/tasks`, {
